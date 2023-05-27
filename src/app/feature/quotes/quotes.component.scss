@@ -1,0 +1,25 @@
+
+#boxForQuote {
+    display: inline-block;
+    width: 450px;
+    max-height: max-content;
+    border: 1px solid black;
+    padding: 0 .5rem;
+    margin: 1rem;
+    filter: drop-shadow(4px 4px 20px gray);
+
+}
+
+#title {
+    text-align: center;
+    font-weight: 700;
+}
+
+#quote {
+    font-style: italic;
+}
+
+#author {
+    text-align: end;
+    font-size: .7rem;
+}
