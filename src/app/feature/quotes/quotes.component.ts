@@ -11,6 +11,7 @@ import { Quote, QuoteResponse } from 'src/app/core/types/quote.type';
 export class QuotesComponent implements OnInit {
 
   quotes: Quote[] = [];
+  
   errorMsg: string = '';
 
   constructor(private quoteService: QuoteService) { }

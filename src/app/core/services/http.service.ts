@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { QuoteResponse } from '../types/quote.type';
+import { Quote, QuoteResponse } from '../types/quote.type';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,10 @@ export class HttpService {
         }
       )
     );
+  }
+
+  getARandomQuote(): Observable<Quote> {
+    return this.getRequest(environment.api.random);
   }
 
 
