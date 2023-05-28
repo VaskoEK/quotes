@@ -1,11 +1,13 @@
 
 #boxForQuote {
-    display: inline-block;
-    width: 450px;
-    max-height: max-content;
+    display: block;
+    width: 90vw;
+    height: max-content;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 1rem;
     border: 1px solid black;
     padding: 0 .5rem;
-    margin: 1rem;
     filter: drop-shadow(4px 4px 20px gray);
 
     #title {
@@ -23,3 +25,17 @@
     }
 }
 
+@media only screen and (min-width: 768px) {
+    #boxForQuote {
+        width: 40vw;
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 1rem;
+    }
+}
+
+@media only screen and (min-width: 1382px) {
+    #boxForQuote {
+      width: 30vw;
+    }
+}
