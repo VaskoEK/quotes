@@ -14,9 +14,14 @@ export class QuotesComponent implements OnInit {
   
   errorMsg: string = '';
 
+  searchedString: string = "";
+
+  message: string = "";
+
   constructor(private quoteService: QuoteService) { }
 
   ngOnInit(): void {
+    
     this.quoteService.getAllQuotesToComponent().subscribe({
       next: (res: QuoteResponse) => {
         this.quotes = res.quotes;
@@ -27,5 +32,22 @@ export class QuotesComponent implements OnInit {
         this.errorMsg = err.message;
       }
     })
+  }
+
+  // ha az idézet szövegében szerepel a searchedString, visszaadja azt a Quote-ot
+  // https://stackoverflow.com/questions/49777455/what-is-the-best-ng-change-ngchange-event-for-angular-5-to-fire-a-custom-functio
+  searching(searchedString: string) {
+    if (this.searchedString.length >= 3) {
+      let match: Quote[] = this.quotes.filter(item => item.quote.match(searchedString));
+      if (match.length > 0) {
+        
+        this.quotes = match;
+      }
+      else {
+        this.quotes = [];
+        this.message = "Nincs találat.";
+        
+      } 
+    }
   }
 }

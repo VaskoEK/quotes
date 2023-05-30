@@ -1,4 +1,6 @@
+Keresés: <input type="text" [(ngModel)]="searchedString" (ngModelChange)="searching($event)" >
 
+<p>{{message}}</p>
 
 <div *ngFor="let quote of quotes" id="boxForQuote">
     <p id="title">{{quote.id}}. idézet</p>
