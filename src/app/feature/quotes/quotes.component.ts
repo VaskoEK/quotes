@@ -10,7 +10,8 @@ import { Quote, QuoteResponse } from 'src/app/core/types/quote.type';
 })
 export class QuotesComponent implements OnInit {
 
-  quotes: Quote[] = [];
+  private _quotes: Quote[] = [];
+  displayedQuotes: Quote[] = [];
   
   errorMsg: string = '';
 
@@ -24,11 +25,12 @@ export class QuotesComponent implements OnInit {
     
     this.quoteService.getAllQuotesToComponent().subscribe({
       next: (res: QuoteResponse) => {
-        this.quotes = res.quotes;
+        this._quotes = res.quotes;
+        this.setQuotesToDisplay(this._quotes);
+
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);
-        
         this.errorMsg = err.message;
       }
     })
@@ -38,16 +40,20 @@ export class QuotesComponent implements OnInit {
   // https://stackoverflow.com/questions/49777455/what-is-the-best-ng-change-ngchange-event-for-angular-5-to-fire-a-custom-functio
   searching(searchedString: string) {
     if (this.searchedString.length >= 3) {
-      let match: Quote[] = this.quotes.filter(item => item.quote.match(searchedString));
+      let match: Quote[] = this._quotes.filter(item => item.quote.match(searchedString));
       if (match.length > 0) {
         
-        this.quotes = match;
+        this.setQuotesToDisplay(match);
       }
       else {
-        this.quotes = [];
+        this.setQuotesToDisplay([]);
         this.message = "Nincs találat.";
         
       } 
     }
   }
+  private setQuotesToDisplay(quotes: Quote[]) {
+    this.displayedQuotes = quotes;
+  }
+
 }
